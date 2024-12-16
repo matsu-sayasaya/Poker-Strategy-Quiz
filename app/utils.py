@@ -36,8 +36,8 @@ def parse_csv(df):
     logger.debug(f"Parsing DataFrame: {df}")
     questions = []
     
-    # Get unique values from second column for category options
-    category_options = df.iloc[:, 1].unique().tolist()
+    # Get unique values from second column for category options, convert to int, and sort
+    category_options = sorted(df.iloc[:, 1].unique().astype(int).tolist())
     
     for index, row in df.iterrows():
         if pd.isna(row.iloc[0]):
