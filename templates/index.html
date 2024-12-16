@@ -3,6 +3,7 @@
 {% block content %}
 <div class="max-w-2xl mx-auto">
     <h1 class="text-4xl font-bold text-center mb-8">Poker Strategy Quiz</h1>
+    
     <form method="POST" enctype="multipart/form-data" class="mb-8 bg-white shadow-md rounded px-8 pt-6 pb-8 transition duration-300 ease-in-out transform hover:scale-105">
         {{ form.hidden_tag() }}
         <div class="mb-4">
@@ -49,6 +50,7 @@
         </div>
         {% endfor %}
     </div>
+    {% endif %}
 
     <script>
     var questions = {{ questions|tojson|safe }};
@@ -89,7 +91,6 @@
         });
     }
     </script>
-    {% endif %}
 </div>
 {% endblock %}
 
