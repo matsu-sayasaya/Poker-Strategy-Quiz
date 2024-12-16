@@ -21,7 +21,7 @@ def allowed_file(filename):
 @bp.route('/', methods=['GET', 'POST'])
 def index():
     form = UploadForm()
-    questions = []  # 初期化
+    questions = []
     if form.validate_on_submit():
         file = form.file.data
         if file and allowed_file(file.filename):
@@ -54,7 +54,13 @@ def check():
     selected_size = data.get('selected_size')
     selected_frequency = data.get('selected_frequency')
     correct_size = data.get('correct_size')
-    correct_frequency = data.get('correct_frequency')
+    correct_frequency = data.get('correct_frequency')  # この行を修正
+
+    # 値が None の場合のエラーハンドリングを追加
+    if selected_size is None or selected_frequency is None or correct_size is None or correct_frequency is None:
+        return jsonify({
+            "error": "Invalid input data"
+        }), 400
 
     # 判定ロジックの実装
     size_result = 'Correct' if selected_size == correct_size else 'Wrong'

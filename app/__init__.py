@@ -3,8 +3,8 @@ from config import Config
 import os
 
 def create_app(config_class=Config):
-    app = Flask(__name__, 
-                static_folder='static',
+    app = Flask(__name__,
+                static_folder=os.path.abspath('static'),
                 template_folder=os.path.abspath('templates'))
     app.config.from_object(config_class)
 
